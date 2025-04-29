@@ -16,7 +16,6 @@ import java.util.List;
 @RequestMapping(value = "/produtos")
 public class ProdutoResource {
 
-
     @Autowired
     private ProdutoService produtoService;
 
@@ -53,5 +52,4 @@ public class ProdutoResource {
         produtoService.delete(id);
         return ResponseEntity.noContent().build();
     }
-
 }

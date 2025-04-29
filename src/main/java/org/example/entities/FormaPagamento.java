@@ -14,12 +14,16 @@ public class FormaPagamento  implements Serializable {
     @Column(name = "FPG_DESCRICAO")
     private String fpgDescricao;
 
+    @Column(length = 30, name = "FPG_STATUS", nullable = false)
+    private String fpgStatus;
+
     public FormaPagamento() {
     }
 
-    public FormaPagamento(Long fpgId, String fpgDescricao) {
+    public FormaPagamento(Long fpgId, String fpgDescricao, String fpgStatus) {
         this.fpgId = fpgId;
         this.fpgDescricao = fpgDescricao;
+        this.fpgStatus = fpgStatus;
     }
 
     public Long getFpgId() {
@@ -37,5 +41,8 @@ public class FormaPagamento  implements Serializable {
     public void setFpgDescricao(String fpgDescricao) {
         this.fpgDescricao = fpgDescricao;
     }
+
+    public String getFpgStatus() { return fpgStatus; }
+    public void setFpgStatus(String fpgStatus) { this.fpgStatus = fpgStatus; }
 
 }
