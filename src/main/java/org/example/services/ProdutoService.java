@@ -37,6 +37,12 @@ public class ProdutoService {
             produtoSistema.setProNome(produto.getProNome());
             produtoSistema.setProPrecoCusto(produto.getProPrecoCusto());
             produtoSistema.setProPrecoVenda(produto.getProPrecoVenda());
+            produtoSistema.setProMarca(produto.getProMarca());
+            produtoSistema.setProDescricao(produto.getProDescricao());
+            produtoSistema.setProAplicacao(produto.getProAplicacao());
+            produtoSistema.setProCategoria(produto.getProCategoria());
+            produtoSistema.setProFabricante(produto.getProFabricante());
+
             repository.save(produtoSistema);
             return true;
         }
