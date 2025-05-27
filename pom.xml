@@ -39,6 +39,12 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>8.0.1.Final</version> <!-- ou versão mais recente -->
+        </dependency>
+
     </dependencies>
 
 </project>

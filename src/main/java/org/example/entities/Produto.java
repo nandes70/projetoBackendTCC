@@ -1,6 +1,11 @@
 package org.example.entities;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -12,39 +17,53 @@ public class Produto implements Serializable {
     @Column(name = "PRO_ID")
     private Long proId;
 
+    @NotBlank(message = "Nome do Produto é Obrigatório")
     @Column(name = "PRO_NOME")
     private String proNome;
-
+    @NotBlank(message = "Descrição do Produto é Obrigatória")
     @Column(name = "PRO_DESCRICAO")
     private String proDescricao;
 
+    @NotBlank(message = "Estoque do Produto é Obrigatório")
     @Column(name = "PRO_ESTOQUE")
     private Integer proEstoque;
 
-    @Column(name = "PRO_CATEGORIA")
+    @NotBlank(message = "Categoria do Produto é Obrigatório")
+    @Size(max = 50, message = "Categoria deve ter no máximo 50 caracteres")
+    @Column(name = "PRO_CATEGORIA", length = 50)
     private String proCategoria;
 
+    @NotBlank(message = "Codigo de Barra do Produto é Obrigatório")
     @Column(name = "PRO_CODIGOBARRA")
     private String proCodigoBarra;
 
-    @Column(name = "PRO_MARCA")
+    @NotBlank(message = "Marca do Produto é Obrigatório")
+    @Size(max = 50, message = "Marca deve ter no máximo 50 caracteres")
+    @Column(name = "PRO_MARCA", length = 50)
     private String proMarca;
 
+    @NotBlank(message = "Status do Produto é Obrigatório")
     @Column(name = "PRO_STATUS")
     private Boolean proStatus;
 
+    @NotBlank(message = "Preço Custo do Produto é Obrigatório")
     @Column(name = "PRO_PRECO_CUSTO", precision = 10, scale = 2)
     private Double proPrecoCusto;
 
-    @Column(name = "PRO_PRECO_VENDA", precision = 10, scale = 2)
+    @NotBlank(message = "Preço de Venda do Produto é Obrigatório")
+    @DecimalMin(value = "0.0", inclusive = false, message = "Preço de Venda deve ser maior que zero")
+    @Column(name = "PRO_PRECO_VENDA", precision = 10, scale = 2, nullable = false)
     private Double proPrecoVenda;
 
+    @NotBlank(message = "Fabricante do Produto é Obrigatório")
     @Column(name = "PRO_FABRICANTE")
     private String proFabricante;
 
+    @NotBlank(message = "Data de cadastro do Produto é Obrigatório")
     @Column(name = "PRO_DATA_CADASTRO")
     private LocalDateTime proDataCadastro;
 
+    @NotBlank(message = "Aplicação do Produto é Obrigatório")
     @Column(name = "PRO_APLICACAO")
     private String proAplicacao;
 
