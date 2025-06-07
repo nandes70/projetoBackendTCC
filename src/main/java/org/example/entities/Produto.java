@@ -59,14 +59,32 @@ public class Produto implements Serializable {
     @Column(name = "PRO_FABRICANTE", nullable = false)
     private String proFabricante;
 
-    @NotNull(message = "Data de cadastro do Produto é Obrigatório")
+    @NotBlank(message = "Data do Produto é Obrigatório")
     @Column(name = "PRO_DATA_CADASTRO", nullable = false)
     private LocalDateTime proDataCadastro;
-
 
     @NotBlank(message = "Aplicação do Produto é Obrigatório")
     @Column(name = "PRO_APLICACAO", nullable = false)
     private String proAplicacao;
+
+    public Produto() {
+    }
+
+    public Produto(Long proId, String proNome, String proDescricao, Integer proEstoque, String proCategoria, String proCodigoBarra, String proMarca, Boolean proStatus, Double proPrecoCusto, Double proPrecoVenda, String proFabricante, LocalDateTime proDataCadastro, String proAplicacao) {
+        this.proId = proId;
+        this.proNome = proNome;
+        this.proDescricao = proDescricao;
+        this.proEstoque = proEstoque;
+        this.proCategoria = proCategoria;
+        this.proCodigoBarra = proCodigoBarra;
+        this.proMarca = proMarca;
+        this.proStatus = proStatus;
+        this.proPrecoCusto = proPrecoCusto;
+        this.proPrecoVenda = proPrecoVenda;
+        this.proFabricante = proFabricante;
+        this.proDataCadastro = proDataCadastro;
+        this.proAplicacao = proAplicacao;
+    }
 
     public Long getProId() {
         return proId;

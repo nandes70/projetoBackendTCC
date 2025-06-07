@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -37,6 +38,7 @@ public class ProdutoResource {
         Produto createdProduto = produtoService.insert(produto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdProduto);
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Produto produto) {
