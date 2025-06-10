@@ -34,8 +34,6 @@ public class ClienteService {
             Cliente clienteSistema = optionalCliente.get();
             clienteSistema.setCliNome(cliente.getCliNome());
             clienteSistema.setCliCpf(cliente.getCliCpf());
-            clienteSistema.setCliEmail(cliente.getCliEmail());
-            clienteSistema.setCliTelefone(cliente.getCliTelefone());
             clienteSistema.setCliStatus(cliente.getCliStatus());
             repository.save(clienteSistema);
             return true;

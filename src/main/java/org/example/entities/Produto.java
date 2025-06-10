@@ -59,8 +59,8 @@ public class Produto implements Serializable {
     @Column(name = "PRO_FABRICANTE", nullable = false)
     private String proFabricante;
 
-    @NotBlank(message = "Data do Produto é Obrigatório")
-    @Column(name = "PRO_DATA_CADASTRO", nullable = false)
+
+    @Column(name = "PRO_DATA_CADASTRO")
     private LocalDateTime proDataCadastro;
 
     @NotBlank(message = "Aplicação do Produto é Obrigatório")

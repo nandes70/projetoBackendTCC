@@ -18,19 +18,19 @@ public class FormaPagamento  implements Serializable {
     private String fpgPermiteParcelamento;
 
     @Column(name = "FPG_NUMERO_MAX_PARCELA")
-    private String fpgNumeroMaxParcela;
+    private Integer fpgNumeroMaxParcela;
 
     @Column(name = "FPG_TAXA_ADICIONAL")
-    private String fpgTaxaAdicional;
+    private Integer fpgTaxaAdicional;
 
     @Column(name = "FPG_STATUS")
-    private String fpgStatus;
+    private Boolean fpgStatus;
 
     public FormaPagamento() {
 
     }
 
-    public FormaPagamento(Long fpgId, String fpgDescricao, String fpgPermiteParcelamento, String fpgNumeroMaxParcela, String fpgTaxaAdicional, String fpgStatus) {
+    public FormaPagamento(Long fpgId, String fpgDescricao, String fpgPermiteParcelamento, Integer fpgNumeroMaxParcela, Integer fpgTaxaAdicional, Boolean fpgStatus) {
         this.fpgId = fpgId;
         this.fpgDescricao = fpgDescricao;
         this.fpgPermiteParcelamento = fpgPermiteParcelamento;
@@ -63,27 +63,27 @@ public class FormaPagamento  implements Serializable {
         this.fpgPermiteParcelamento = fpgPermiteParcelamento;
     }
 
-    public String getFpgNumeroMaxParcela() {
+    public Integer getFpgNumeroMaxParcela() {
         return fpgNumeroMaxParcela;
     }
 
-    public void setFpgNumeroMaxParcela(String fpgNumeroMaxParcela) {
+    public void setFpgNumeroMaxParcela(Integer fpgNumeroMaxParcela) {
         this.fpgNumeroMaxParcela = fpgNumeroMaxParcela;
     }
 
-    public String getFpgTaxaAdicional() {
+    public Integer getFpgTaxaAdicional() {
         return fpgTaxaAdicional;
     }
 
-    public void setFpgTaxaAdicional(String fpgTaxaAdicional) {
+    public void setFpgTaxaAdicional(Integer fpgTaxaAdicional) {
         this.fpgTaxaAdicional = fpgTaxaAdicional;
     }
 
-    public String getFpgStatus() {
+    public Boolean getFpgStatus() {
         return fpgStatus;
     }
 
-    public void setFpgStatus(String fpgStatus) {
+    public void setFpgStatus(Boolean fpgStatus) {
         this.fpgStatus = fpgStatus;
     }
 }

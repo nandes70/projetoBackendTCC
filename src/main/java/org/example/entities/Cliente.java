@@ -2,6 +2,8 @@ package org.example.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Cliente implements Serializable {
@@ -11,17 +13,17 @@ public class Cliente implements Serializable {
     @Column(name = "CLI_ID")
     private Long cliId;
 
+    @OneToMany(mappedBy = "endCliente", cascade = CascadeType.ALL)
+    private List<Endereco> enderecos = new ArrayList<>();
+
+    @OneToMany(mappedBy = "conCliente", cascade = CascadeType.ALL)
+    private List<Contato> contatos = new ArrayList<>();
+
     @Column(name = "CLI_NOME")
     private String cliNome;
 
     @Column(name = "CLI_CPF", length = 11)
     private String cliCpf;
-
-    @Column(name = "CLI_EMAIL")
-    private String cliEmail;
-
-    @Column(name = "CLI_TELEFONE", length = 14)
-    private String cliTelefone;
 
     @Column(length = 30, name = "CLI_STATUS", nullable = false)
     private String cliStatus;
@@ -29,12 +31,10 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
-    public Cliente(Long cliId, String cliNome, String cliCpf, String cliEmail, String cliTelefone, String cliStatus) {
+    public Cliente(Long cliId, String cliNome, String cliCpf, String cliStatus) {
         this.cliId = cliId;
         this.cliNome = cliNome;
         this.cliCpf = cliCpf;
-        this.cliEmail = cliEmail;
-        this.cliTelefone = cliTelefone;
         this.cliStatus = cliStatus;
     }
 
@@ -62,23 +62,11 @@ public class Cliente implements Serializable {
         this.cliCpf = cliCpf;
     }
 
-    public String getCliEmail() {
-        return cliEmail;
+    public String getCliStatus() {
+        return cliStatus;
     }
 
-    public void setCliEmail(String cliEmail) {
-        this.cliEmail = cliEmail;
+    public void setCliStatus(String cliStatus) {
+        this.cliStatus = cliStatus;
     }
-
-    public String getCliTelefone() {
-        return cliTelefone;
-    }
-
-    public void setCliTelefone(String cliTelefone) {
-        this.cliTelefone = cliTelefone;
-    }
-
-    public String getCliStatus() { return cliStatus; }
-
-    public void setCliStatus(String cliStatus) { this.cliStatus = cliStatus; }
 }
