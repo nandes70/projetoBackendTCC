@@ -29,15 +29,21 @@ public class Contato implements Serializable {
     @Column(length = 55, name = "CON_EMAIL")
     private String conEmail;
 
+    @Column(length = 55, name = "CON_EMAIL_SECUNDARIO")
+    private String conEmailSecundario;
+
+
+
     public Contato() {
     }
 
-    public Contato(Long conId, Cliente conCliente, String conCelular, String conTelefoneComercial, String conEmail) {
+    public Contato(Long conId, Cliente conCliente, String conCelular, String conTelefoneComercial, String conEmail, String conEmailSecundario) {
         this.conId = conId;
         this.conCliente = conCliente;
         this.conCelular = conCelular;
         this.conTelefoneComercial = conTelefoneComercial;
         this.conEmail = conEmail;
+        this.conEmailSecundario = conEmailSecundario;
     }
 
     public Long getConId() {
@@ -78,5 +84,13 @@ public class Contato implements Serializable {
 
     public void setConEmail(String conEmail) {
         this.conEmail = conEmail;
+    }
+
+    public String getConEmailSecundario() {
+        return conEmailSecundario;
+    }
+
+    public void setConEmailSecundario(String conEmailSecundario) {
+        this.conEmailSecundario = conEmailSecundario;
     }
 }

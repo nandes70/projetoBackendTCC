@@ -74,6 +74,7 @@ public class ClienteService {
             contato.setConCelular(objDto.getConCelular());
             contato.setConTelefoneComercial(objDto.getConTelefoneComercial());
             contato.setConEmail(objDto.getConEmail());
+            contato.setConEmailSecundario(objDto.getConEmailSecundario());
 
 // Salva as Alterações
             repository.save(entity);
@@ -96,7 +97,7 @@ public class ClienteService {
         Cliente cli = new Cliente(null, objDto.getCliNome(), objDto.getCliCpf(), objDto.getCliStatus());
         Endereco ender = new Endereco(null, cli, objDto.getEndRua(), objDto.getEndNumero(), objDto.getEndCidade(), objDto.getEndCep(), objDto.getEndEstado(), objDto.getEndBairro());
         Contato contato = new Contato(null, cli, objDto.getConCelular(), objDto.getConTelefoneComercial(),
-                objDto.getConEmail());
+                objDto.getConEmail(), objDto.getConEmailSecundario());
 
         cli.getEnderecos().add(ender);
         cli.getContatos().add(contato);
@@ -127,6 +128,7 @@ public class ClienteService {
         dto.setConCelular(contato.getConCelular());
         dto.setConTelefoneComercial(contato.getConTelefoneComercial());
         dto.setConEmail(contato.getConEmail());
+        dto.setConEmailSecundario(contato.getConEmailSecundario());
 
         return dto;
     }

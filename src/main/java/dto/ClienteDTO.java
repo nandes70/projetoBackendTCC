@@ -28,6 +28,7 @@ public class ClienteDTO {
     private String conCelular;
     private String conTelefoneComercial;
     private String conEmail;
+    private String conEmailSecundario;
 
     public ClienteDTO() {
     }
@@ -142,5 +143,13 @@ public class ClienteDTO {
 
     public void setConEmail(String conEmail) {
         this.conEmail = conEmail;
+    }
+
+    public String getConEmailSecundario() {
+        return conEmailSecundario;
+    }
+
+    public void setConEmailSecundario(String conEmailSecundario) {
+        this.conEmailSecundario = conEmailSecundario;
     }
 }
