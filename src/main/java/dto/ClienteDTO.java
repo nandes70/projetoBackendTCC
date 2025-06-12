@@ -11,8 +11,6 @@ public class ClienteDTO {
     private Long cliId;
     private String cliNome;
     private String cliCpf;
-    private String cliEmail;
-    private String cliTelefone;
     private String cliStatus;
 
 
@@ -22,6 +20,7 @@ public class ClienteDTO {
     private String endCidade;
     private String endCep;
     private String endEstado;
+    private String endBairro;
 
 
 
@@ -31,24 +30,6 @@ public class ClienteDTO {
     private String conEmail;
 
     public ClienteDTO() {
-    }
-
-    public ClienteDTO(Long cliId, String cliNome, String cliCpf, String cliEmail, String cliTelefone, String cliStatus, String endRua, String endNumero, String endCidade, String endCep, String endEstado, Long conId, String conCelular, String conTelefoneComercial, String conEmail) {
-        this.cliId = cliId;
-        this.cliNome = cliNome;
-        this.cliCpf = cliCpf;
-        this.cliEmail = cliEmail;
-        this.cliTelefone = cliTelefone;
-        this.cliStatus = cliStatus;
-        this.endRua = endRua;
-        this.endNumero = endNumero;
-        this.endCidade = endCidade;
-        this.endCep = endCep;
-        this.endEstado = endEstado;
-        this.conId = conId;
-        this.conCelular = conCelular;
-        this.conTelefoneComercial = conTelefoneComercial;
-        this.conEmail = conEmail;
     }
 
     public Long getCliId() {
@@ -73,22 +54,6 @@ public class ClienteDTO {
 
     public void setCliCpf(String cliCpf) {
         this.cliCpf = cliCpf;
-    }
-
-    public String getCliEmail() {
-        return cliEmail;
-    }
-
-    public void setCliEmail(String cliEmail) {
-        this.cliEmail = cliEmail;
-    }
-
-    public String getCliTelefone() {
-        return cliTelefone;
-    }
-
-    public void setCliTelefone(String cliTelefone) {
-        this.cliTelefone = cliTelefone;
     }
 
     public String getCliStatus() {
@@ -137,6 +102,14 @@ public class ClienteDTO {
 
     public void setEndEstado(String endEstado) {
         this.endEstado = endEstado;
+    }
+
+    public String getEndBairro() {
+        return endBairro;
+    }
+
+    public void setEndBairro(String endBairro) {
+        this.endBairro = endBairro;
     }
 
     public Long getConId() {

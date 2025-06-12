@@ -3,6 +3,7 @@ package org.example.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
 @Entity
@@ -18,6 +19,7 @@ public class Contato implements Serializable {
     @JoinColumn(name = "CON_CLI_ID")
     private Cliente conCliente;
 
+    @Pattern(regexp = "")
     @Column(name = "CON_CELULAR", length = 14)
     private String conCelular;
 
