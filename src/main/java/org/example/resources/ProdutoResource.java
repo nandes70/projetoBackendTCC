@@ -42,12 +42,14 @@ public class ProdutoResource {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Produto produto) {
-        if (produtoService.update(id, produto)) {
+        Produto atualizado = produtoService.update(id, produto);
+        if (atualizado != null) {
             return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.notFound().build();
         }
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {

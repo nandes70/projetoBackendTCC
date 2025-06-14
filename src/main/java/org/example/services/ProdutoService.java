@@ -4,10 +4,9 @@ import org.example.entities.Produto;
 import org.example.repositories.ProdutoRepository;
 import org.example.services.exeptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,39 +21,40 @@ public class ProdutoService {
     }
 
     public Produto findById(Long id) {
-        Optional<Produto> obj = repository.findById(id);
-        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
+        return repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public Produto insert(Produto produto) {
+        produto.setProDataCadastro(LocalDateTime.now());
+        produto.setProDataAtualizacao(LocalDateTime.now());
         return repository.save(produto);
     }
 
-    public boolean update(Long id, Produto produto) {
-        Optional<Produto> optionalProduto = repository.findById(id);
-        if (optionalProduto.isPresent()) {
-            Produto produtoSistema = optionalProduto.get();
-            produtoSistema.setProId(produto.getProId());
-            produtoSistema.setProNome(produto.getProNome());
-            produtoSistema.setProDescricao(produto.getProDescricao());
-            produtoSistema.setProEstoque(produto.getProEstoque());
-            produtoSistema.setProCategoria(produto.getProCategoria());
-            produtoSistema.setProCodigoBarra(produto.getProCodigoBarra());
-            produtoSistema.setProMarca(produto.getProMarca());
-            produtoSistema.setProStatus(produto.getProStatus());
-            produtoSistema.setProPrecoCusto(produto.getProPrecoCusto());
-            produtoSistema.setProPrecoVenda(produto.getProPrecoVenda());
-            produtoSistema.setProFabricante(produto.getProFabricante());
-            produtoSistema.setProAplicacao(produto.getProAplicacao());
-            produtoSistema.setProDataCadastro(produto.getProDataCadastro());
+    public Produto update(Long id, Produto novoProduto) {
+        Produto produtoExistente = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(id));
 
-            repository.save(produtoSistema);
-            return true;
-        }
-        return false;
+        produtoExistente.setProNome(novoProduto.getProNome());
+        produtoExistente.setProDescricao(novoProduto.getProDescricao());
+        produtoExistente.setProEstoque(novoProduto.getProEstoque());
+        produtoExistente.setProCategoria(novoProduto.getProCategoria());
+        produtoExistente.setProCodigoBarra(novoProduto.getProCodigoBarra());
+        produtoExistente.setProMarca(novoProduto.getProMarca());
+        produtoExistente.setProStatus(novoProduto.getProStatus());
+        produtoExistente.setProPrecoCusto(novoProduto.getProPrecoCusto());
+        produtoExistente.setProPrecoVenda(novoProduto.getProPrecoVenda());
+        produtoExistente.setProFabricante(novoProduto.getProFabricante());
+        produtoExistente.setProAplicacao(novoProduto.getProAplicacao());
+        produtoExistente.setProDataAtualizacao(LocalDateTime.now());
+
+        return repository.save(produtoExistente);
     }
 
     public void delete(Long id) {
+        if (!repository.existsById(id)) {
+            throw new ResourceNotFoundException(id);
+        }
         repository.deleteById(id);
     }
 }
