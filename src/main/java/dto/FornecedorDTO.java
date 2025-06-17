@@ -1,23 +1,15 @@
 package dto;
 
-
-import org.hibernate.validator.constraints.br.CPF;
-
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 
-public class ClienteDTO {
+public class FornecedorDTO {
 
+    private Long forId;
+    private String forNomeFantasia;
+    private String forRazaoSocial;
+    private String forStatus;
 
-    private Long cliId;
-    private String cliNome;
-    @CPF(message = "CPF inválido")
-    private String cliCpf;
-    private String cliStatus;
-
-
-
+    // Endereço
     private String endRua;
     private String endNumero;
     private String endCidade;
@@ -25,47 +17,49 @@ public class ClienteDTO {
     private String endEstado;
     private String endBairro;
 
-
-
+    // Contato
     private Long conId;
     private String conCelular;
     private String conTelefoneComercial;
     private String conEmail;
     private String conEmailSecundario;
 
-    public ClienteDTO() {
+
+
+
+    public FornecedorDTO() {
     }
 
-    public Long getCliId() {
-        return cliId;
+    public Long getForId() {
+        return forId;
     }
 
-    public void setCliId(Long cliId) {
-        this.cliId = cliId;
+    public void setForId(Long forId) {
+        this.forId = forId;
     }
 
-    public String getCliNome() {
-        return cliNome;
+    public String getForNomeFantasia() {
+        return forNomeFantasia;
     }
 
-    public void setCliNome(String cliNome) {
-        this.cliNome = cliNome;
+    public void setForNomeFantasia(String forNomeFantasia) {
+        this.forNomeFantasia = forNomeFantasia;
     }
 
-    public String getCliCpf() {
-        return cliCpf;
+    public String getForRazaoSocial() {
+        return forRazaoSocial;
     }
 
-    public void setCliCpf(String cliCpf) {
-        this.cliCpf = cliCpf;
+    public void setForRazaoSocial(String forRazaoSocial) {
+        this.forRazaoSocial = forRazaoSocial;
     }
 
-    public String getCliStatus() {
-        return cliStatus;
+    public String getForStatus() {
+        return forStatus;
     }
 
-    public void setCliStatus(String cliStatus) {
-        this.cliStatus = cliStatus;
+    public void setForStatus(String forStatus) {
+        this.forStatus = forStatus;
     }
 
     public String getEndRua() {
