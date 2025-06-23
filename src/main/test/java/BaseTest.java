@@ -25,6 +25,6 @@ public class BaseTest {
     @Test
     public void openProductsPage() {
         driver.get("http://localhost:4200/products");
-        // Aqui você pode adicionar asserts ou validações
+// Aqui você pode adicionar asserts ou validações
     }
 }

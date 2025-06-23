@@ -26,8 +26,8 @@ public class ClienteResource {
         List<Cliente> list = service.findAll();
         List<ClienteDTO> listDto = list.stream().map(obj -> service.toNewDTO(obj)).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDto);
-
     }
+
     @GetMapping(value = "/{id}")
     public ResponseEntity<ClienteDTO> findById(@PathVariable Long id){
         Cliente obj = service.findById(id);
@@ -39,13 +39,16 @@ public class ClienteResource {
     public ResponseEntity<Void> insert(@Valid @RequestBody ClienteDTO objDto){
         Cliente obj = service.fromDTO(objDto);
         obj = service.insert(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(obj.getCliId()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
+                .path("/{id}")
+                .buildAndExpand(obj.getCliId())
+                .toUri();
         return ResponseEntity.created(uri).build();
     }
 
-    @GetMapping(value = "/{id}")
+    @PutMapping(value = "/{id}") // corrigido aqui
     public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO objDto, @PathVariable Long id){
-       service.update(id, objDto);
+        service.update(id, objDto);
         return ResponseEntity.noContent().build();
     }
 
@@ -54,5 +57,4 @@ public class ClienteResource {
         service.deleteCliente(id);
         return ResponseEntity.noContent().build();
     }
-
 }
