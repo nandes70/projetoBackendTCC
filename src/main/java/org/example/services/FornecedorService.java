@@ -53,6 +53,7 @@ public class FornecedorService {
             entity.setForNomeFantasia(dto.getForNomeFantasia());
             entity.setForRazaoSocial(dto.getForRazaoSocial());
             entity.setForStatus(dto.getForStatus());
+            entity.setForCnpj(dto.getForCnpj());
 
             // Atualiza Endereço (assumindo apenas um)
             Endereco endereco = entity.getEnderecos().get(0);
@@ -87,9 +88,8 @@ public class FornecedorService {
     }
 
     public Fornecedor fromDTO(FornecedorDTO dto) {
-        Fornecedor forne = new Fornecedor(null, dto.getForNomeFantasia(), dto.getForRazaoSocial(), dto.getForStatus());
-        Endereco ender = new Endereco(null, forne, dto.getEndRua(), dto.getEndNumero(),
-                dto.getEndCidade(), dto.getEndCep(), dto.getEndEstado(), dto.getEndBairro());
+        Fornecedor forne = new Fornecedor(null, dto.getForNomeFantasia(), dto.getForRazaoSocial(), dto.getForStatus(), dto.getForCnpj());
+        Endereco ender = new Endereco(null, forne, dto.getEndRua(), dto.getEndNumero(), dto.getEndCidade(), dto.getEndCep(), dto.getEndEstado(), dto.getEndBairro());
         Contato contato = new Contato(null, forne, dto.getConCelular(), dto.getConTelefoneComercial(),
                 dto.getConEmail(), dto.getConEmailSecundario());
 
@@ -105,6 +105,7 @@ public class FornecedorService {
         dto.setForId(obj.getForId());
         dto.setForNomeFantasia(obj.getForNomeFantasia());
         dto.setForStatus(dto.getForRazaoSocial());
+        dto.setForCnpj(dto.getForCnpj());
 
         Endereco endereco = obj.getEnderecos().get(0);
         dto.setEndRua(endereco.getEndRua());

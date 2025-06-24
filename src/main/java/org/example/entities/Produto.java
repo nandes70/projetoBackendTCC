@@ -13,6 +13,10 @@ public class Produto implements Serializable {
     @Column(name = "PRO_ID")
     private Long proId;
 
+    @ManyToOne
+    @JoinColumn(name = "FOR_ID")
+    private Fornecedor idFornecedor;
+
     @NotBlank(message = "Nome do Produto é obrigatório")
     @Size(max = 100, message = "Nome deve ter no máximo 100 caracteres")
     @Column(name = "PRO_NOME", length = 100, nullable = false)
@@ -75,8 +79,9 @@ public class Produto implements Serializable {
 
     public Produto() {}
 
-    public Produto(Long proId, String proNome, String proDescricao, Integer proEstoque, String proCategoria, String proCodigoBarra, String proMarca, Boolean proStatus, Double proPrecoCusto, Double proPrecoVenda, String proFabricante, String proAplicacao, LocalDateTime proDataCadastro, LocalDateTime proDataAtualizacao) {
+    public Produto(Long proId, Fornecedor idFornecedor, String proNome, String proDescricao, Integer proEstoque, String proCategoria, String proCodigoBarra, String proMarca, Boolean proStatus, Double proPrecoCusto, Double proPrecoVenda, String proFabricante, String proAplicacao, LocalDateTime proDataCadastro, LocalDateTime proDataAtualizacao) {
         this.proId = proId;
+        this.idFornecedor = idFornecedor;
         this.proNome = proNome;
         this.proDescricao = proDescricao;
         this.proEstoque = proEstoque;
@@ -98,6 +103,14 @@ public class Produto implements Serializable {
 
     public void setProId(Long proId) {
         this.proId = proId;
+    }
+
+    public Fornecedor getIdFornecedor() {
+        return idFornecedor;
+    }
+
+    public void setIdFornecedor(Fornecedor idFornecedor) {
+        this.idFornecedor = idFornecedor;
     }
 
     public String getProNome() {

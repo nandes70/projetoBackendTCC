@@ -1,5 +1,8 @@
 package dto;
 
+import org.hibernate.validator.constraints.br.CNPJ;
+import org.hibernate.validator.constraints.br.CPF;
+
 import javax.persistence.Column;
 
 public class FornecedorDTO {
@@ -8,6 +11,8 @@ public class FornecedorDTO {
     private String forNomeFantasia;
     private String forRazaoSocial;
     private String forStatus;
+    @CNPJ(message = "CNPJ inválido")
+    private String forCnpj;
 
     // Endereço
     private String endRua;
@@ -60,6 +65,14 @@ public class FornecedorDTO {
 
     public void setForStatus(String forStatus) {
         this.forStatus = forStatus;
+    }
+
+    public String getForCnpj() {
+        return forCnpj;
+    }
+
+    public void setForCnpj(String forCnpj) {
+        this.forCnpj = forCnpj;
     }
 
     public String getEndRua() {

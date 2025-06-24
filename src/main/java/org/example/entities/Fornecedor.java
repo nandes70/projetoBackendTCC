@@ -26,6 +26,9 @@ public class Fornecedor implements Serializable {
     @Column(name = "FOR_NOME_FANTASIA", nullable = false, length = 100)
     private String forNomeFantasia;
 
+    @Column(name = "FOR_CNPJ", nullable = false, length = 100)
+    private String forCnpj;
+
     @Column(name = "FOR_RAZAO_SOCIAL", nullable = false, unique = true, length = 100)
     private String forRazaoSocial;
 
@@ -35,9 +38,10 @@ public class Fornecedor implements Serializable {
     public Fornecedor() {
     }
 
-    public Fornecedor(Long forId, String forNomeFantasia, String forRazaoSocial, String forStatus) {
+    public Fornecedor(Long forId, String forNomeFantasia, String forCnpj, String forRazaoSocial, String forStatus) {
         this.forId = forId;
         this.forNomeFantasia = forNomeFantasia;
+        this.forCnpj = forCnpj;
         this.forRazaoSocial = forRazaoSocial;
         this.forStatus = forStatus;
     }
@@ -48,30 +52,6 @@ public class Fornecedor implements Serializable {
 
     public void setForId(Long forId) {
         this.forId = forId;
-    }
-
-    public String getForNomeFantasia() {
-        return forNomeFantasia;
-    }
-
-    public void setForNomeFantasia(String forNomeFantasia) {
-        this.forNomeFantasia = forNomeFantasia;
-    }
-
-    public String getForRazaoSocial() {
-        return forRazaoSocial;
-    }
-
-    public void setForRazaoSocial(String forRazaoSocial) {
-        this.forRazaoSocial = forRazaoSocial;
-    }
-
-    public String getForStatus() {
-        return forStatus;
-    }
-
-    public void setForStatus(String forStatus) {
-        this.forStatus = forStatus;
     }
 
     public List<Endereco> getEnderecos() {
@@ -88,5 +68,37 @@ public class Fornecedor implements Serializable {
 
     public void setContatos(List<Contato> contatos) {
         this.contatos = contatos;
+    }
+
+    public String getForNomeFantasia() {
+        return forNomeFantasia;
+    }
+
+    public void setForNomeFantasia(String forNomeFantasia) {
+        this.forNomeFantasia = forNomeFantasia;
+    }
+
+    public String getForCnpj() {
+        return forCnpj;
+    }
+
+    public void setForCnpj(String forCnpj) {
+        this.forCnpj = forCnpj;
+    }
+
+    public String getForRazaoSocial() {
+        return forRazaoSocial;
+    }
+
+    public void setForRazaoSocial(String forRazaoSocial) {
+        this.forRazaoSocial = forRazaoSocial;
+    }
+
+    public String getForStatus() {
+        return forStatus;
+    }
+
+    public void setForStatus(String forStatus) {
+        this.forStatus = forStatus;
     }
 }
