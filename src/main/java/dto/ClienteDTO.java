@@ -17,7 +17,7 @@ public class ClienteDTO {
     private String cliStatus;
 
 
-
+//endereco
     private String endRua;
     private String endNumero;
     private String endCidade;
@@ -26,7 +26,7 @@ public class ClienteDTO {
     private String endBairro;
 
 
-
+//contato
     private Long conId;
     private String conCelular;
     private String conTelefoneComercial;

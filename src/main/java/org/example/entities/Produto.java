@@ -29,6 +29,15 @@ public class Produto implements Serializable {
 
     @NotNull(message = "Estoque do Produto é obrigatório")
     @Min(value = 0, message = "Estoque não pode ser negativo")
+    @Column(name = "PRO_OBSERVACAO", nullable = false)
+    private Integer proObservacao;
+
+    @NotNull(message = "Estoque do Produto é obrigatório")
+    @Min(value = 0, message = "Estoque não pode ser negativo")
+    @Column(name = "PRO_GARANTIA", nullable = false)
+    private Integer proGarantia;
+    @NotNull(message = "Estoque do Produto é obrigatório")
+    @Min(value = 0, message = "Estoque não pode ser negativo")
     @Column(name = "PRO_ESTOQUE", nullable = false)
     private Integer proEstoque;
 
