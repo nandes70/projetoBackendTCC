@@ -40,13 +40,15 @@ public class ProdutoService {
         produtoExistente.setProEstoque(novoProduto.getProEstoque());
         produtoExistente.setProCategoria(novoProduto.getProCategoria());
         produtoExistente.setProCodigoBarra(novoProduto.getProCodigoBarra());
+        produtoExistente.setProCodigoInterno(novoProduto.getProCodigoInterno());
         produtoExistente.setProMarca(novoProduto.getProMarca());
         produtoExistente.setProStatus(novoProduto.getProStatus());
         produtoExistente.setProPrecoCusto(novoProduto.getProPrecoCusto());
         produtoExistente.setProPrecoVenda(novoProduto.getProPrecoVenda());
         produtoExistente.setProFabricante(novoProduto.getProFabricante());
-        produtoExistente.setProAplicacao(novoProduto.getProAplicacao());
+        produtoExistente.setProAnoAplicacao(novoProduto.getProAnoAplicacao());
         produtoExistente.setProDataAtualizacao(LocalDateTime.now());
+        produtoExistente.setProObservacao(novoProduto.getProObservacao());
 
         return repository.save(produtoExistente);
     }
