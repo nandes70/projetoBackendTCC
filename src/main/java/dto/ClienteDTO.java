@@ -1,23 +1,24 @@
 package dto;
 
-
 import org.hibernate.validator.constraints.br.CPF;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import java.util.Date;
 
 public class ClienteDTO {
 
-
     private Long cliId;
+
     private String cliNome;
+
     @CPF(message = "CPF inválido")
     private String cliCpf;
+
     private String cliStatus;
 
+    private Date dataNascimento;
 
-//endereco
+    private String formaPagamento;
+
+    // Endereço
     private String endRua;
     private String endNumero;
     private String endCidade;
@@ -25,16 +26,16 @@ public class ClienteDTO {
     private String endEstado;
     private String endBairro;
 
-
-//contato
+    // Contato
     private Long conId;
     private String conCelular;
     private String conTelefoneComercial;
     private String conEmail;
     private String conEmailSecundario;
 
-    public ClienteDTO() {
-    }
+    public ClienteDTO() {}
+
+    // Getters e setters (mantidos como estão)
 
     public Long getCliId() {
         return cliId;
@@ -66,6 +67,22 @@ public class ClienteDTO {
 
     public void setCliStatus(String cliStatus) {
         this.cliStatus = cliStatus;
+    }
+
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getFormaPagamento() {
+        return formaPagamento;
+    }
+
+    public void setFormaPagamento(String formaPagamento) {
+        this.formaPagamento = formaPagamento;
     }
 
     public String getEndRua() {
