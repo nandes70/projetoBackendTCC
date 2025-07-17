@@ -11,13 +11,9 @@ public class ClienteDTO {
 
     @CPF(message = "CPF inválido")
     private String cliCpf;
-
     private String cliStatus;
-
     private Date dataNascimento;
-
     private String formaPagamento;
-
     // Endereço
     private String endRua;
     private String endNumero;
@@ -27,7 +23,6 @@ public class ClienteDTO {
     private String endBairro;
 
     // Contato
-    private Long conId;
     private String conCelular;
     private String conTelefoneComercial;
     private String conEmail;
@@ -131,14 +126,6 @@ public class ClienteDTO {
 
     public void setEndBairro(String endBairro) {
         this.endBairro = endBairro;
-    }
-
-    public Long getConId() {
-        return conId;
-    }
-
-    public void setConId(Long conId) {
-        this.conId = conId;
     }
 
     public String getConCelular() {

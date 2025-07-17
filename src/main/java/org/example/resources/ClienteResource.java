@@ -24,36 +24,40 @@ public class ClienteResource {
     @GetMapping
     public ResponseEntity<List<ClienteDTO>> findAll() {
         List<Cliente> list = service.findAll();
-        List<ClienteDTO> listDto = list.stream().map(obj -> service.toNewDTO(obj)).collect(Collectors.toList());
+        List<ClienteDTO> listDto = list.stream()
+                .map(service::toNewDTO)
+                .collect(Collectors.toList());
         return ResponseEntity.ok().body(listDto);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<ClienteDTO> findById(@PathVariable Long id){
+    public ResponseEntity<ClienteDTO> findById(@PathVariable Long id) {
         Cliente obj = service.findById(id);
         ClienteDTO dto = service.toNewDTO(obj);
         return ResponseEntity.ok().body(dto);
     }
 
     @PostMapping
-    public ResponseEntity<Void> insert(@Valid @RequestBody ClienteDTO objDto){
+    public ResponseEntity<Void> insert(@Valid @RequestBody ClienteDTO objDto) {
         Cliente obj = service.fromDTO(objDto);
         obj = service.insert(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
+
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(obj.getCliId())
                 .toUri();
+
         return ResponseEntity.created(uri).build();
     }
 
-    @PutMapping(value = "/{id}") // corrigido aqui
-    public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO objDto, @PathVariable Long id){
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO objDto, @PathVariable Long id) {
         service.update(id, objDto);
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCliente(@PathVariable Long id){
+    public ResponseEntity<Void> deleteCliente(@PathVariable Long id) {
         service.deleteCliente(id);
         return ResponseEntity.noContent().build();
     }

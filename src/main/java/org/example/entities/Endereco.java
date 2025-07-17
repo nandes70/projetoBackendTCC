@@ -35,10 +35,10 @@ public class Endereco implements Serializable {
     @Column(name = "END_CIDADE")
     private String endCidade;
 
-    @Column(name = "END_CEP", length = 8)
+    @Column(name = "END_CEP")
     private String endCep;
 
-    @Column(name = "END_ESTADO", length = 2)
+    @Column(name = "END_ESTADO")
     private String endEstado;
 
 

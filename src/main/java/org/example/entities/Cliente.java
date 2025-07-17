@@ -15,21 +15,24 @@ public class Cliente implements Serializable {
     @Column(name = "CLI_ID")
     private Long cliId;
 
-    @OneToMany(mappedBy = "endCliente", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "endCliente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Endereco> enderecos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "conCliente", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "conCliente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Contato> contatos = new ArrayList<>();
+
     @NotBlank(message = "Nome Obrigatório")
-    @Size(max = 100, message = "Nome deve ter no maximo 100 caracteres")
+    @Size(max = 100, message = "Nome deve ter no máximo 100 caracteres")
     @Column(name = "CLI_NOME")
     private String cliNome;
+
     @NotBlank(message = "Cpf Obrigatório")
-    @Size(max = 11, message = "Nome deve ter no maximo 100 caracteres")
+    @Size(max = 11, message = "CPF deve ter no máximo 11 caracteres")
     @Column(name = "CLI_CPF", length = 11)
     private String cliCpf;
+
     @NotBlank(message = "Status Obrigatório")
-    @Size(max = 100, message = "Status deve ter no maximo 100 caracteres")
+    @Size(max = 100, message = "Status deve ter no máximo 100 caracteres")
     @Column(length = 100, name = "CLI_STATUS", nullable = false)
     private String cliStatus;
 
@@ -89,5 +92,29 @@ public class Cliente implements Serializable {
 
     public void setCliStatus(String cliStatus) {
         this.cliStatus = cliStatus;
+    }
+
+    // Método para adicionar Endereco e manter a sincronização bidirecional
+    public void addEndereco(Endereco endereco) {
+        enderecos.add(endereco);
+        endereco.setEndCliente(this);
+    }
+
+    // Método para remover Endereco e manter a sincronização bidirecional
+    public void removeEndereco(Endereco endereco) {
+        enderecos.remove(endereco);
+        endereco.setEndCliente(null);
+    }
+
+    // Método para adicionar Contato e manter a sincronização bidirecional
+    public void addContato(Contato contato) {
+        contatos.add(contato);
+        contato.setConCliente(this);
+    }
+
+    // Método para remover Contato e manter a sincronização bidirecional
+    public void removeContato(Contato contato) {
+        contatos.remove(contato);
+        contato.setConCliente(null);
     }
 }
