@@ -17,36 +17,40 @@ public class Fornecedor implements Serializable {
     @Column(name = "FOR_ID")
     private Long forId;
 
-    @OneToMany(mappedBy = "endFornecedor", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "endFornecedor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Endereco> enderecos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "conFornecedor", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "conFornecedor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Contato> contatos = new ArrayList<>();
 
+    @NotBlank(message = "Nome Fantasia obrigatório")
+    @Size(max = 100, message = "Nome Fantasia deve ter no máximo 100 caracteres")
     @Column(name = "FOR_NOME_FANTASIA", nullable = false, length = 100)
     private String forNomeFantasia;
 
-    @Column(name = "FOR_NOME_RESPONSAVEL", nullable = false, length = 100)
-    private String forNomeresponsavel;
-    
-    @Column(name = "FOR_CNPJ", nullable = false, length = 100)
-    private String forCnpj;
-
-    @Column(name = "FOR_RAZAO_SOCIAL", nullable = false, unique = true, length = 100)
+    @NotBlank(message = "Razão Social obrigatória")
+    @Size(max = 100, message = "Razão Social deve ter no máximo 100 caracteres")
+    @Column(name = "FOR_RAZAO_SOCIAL", nullable = false, length = 100)
     private String forRazaoSocial;
 
+    @NotBlank(message = "CNPJ obrigatório")
+    @Size(max = 14, message = "CNPJ deve ter no máximo 14 caracteres")
+    @CNPJ(message = "CNPJ inválido")
+    @Column(name = "FOR_CNPJ", nullable = false, length = 14)
+    private String forCnpj;
+
+    @NotBlank(message = "Status obrigatório")
+    @Size(max = 60, message = "Status deve ter no máximo 60 caracteres")
     @Column(name = "FOR_STATUS", nullable = false, length = 60)
     private String forStatus;
 
-    public Fornecedor() {
-    }
+    public Fornecedor() {}
 
-    public Fornecedor(Long forId, String forNomeFantasia, String forNomeresponsavel, String forCnpj, String forRazaoSocial, String forStatus) {
+    public Fornecedor(Long forId, String forNomeFantasia, String forRazaoSocial, String forCnpj, String forStatus) {
         this.forId = forId;
         this.forNomeFantasia = forNomeFantasia;
-        this.forNomeresponsavel = forNomeresponsavel;
-        this.forCnpj = forCnpj;
         this.forRazaoSocial = forRazaoSocial;
+        this.forCnpj = forCnpj;
         this.forStatus = forStatus;
     }
 
@@ -82,12 +86,12 @@ public class Fornecedor implements Serializable {
         this.forNomeFantasia = forNomeFantasia;
     }
 
-    public String getForNomeresponsavel() {
-        return forNomeresponsavel;
+    public String getForRazaoSocial() {
+        return forRazaoSocial;
     }
 
-    public void setForNomeresponsavel(String forNomeresponsavel) {
-        this.forNomeresponsavel = forNomeresponsavel;
+    public void setForRazaoSocial(String forRazaoSocial) {
+        this.forRazaoSocial = forRazaoSocial;
     }
 
     public String getForCnpj() {
@@ -98,19 +102,32 @@ public class Fornecedor implements Serializable {
         this.forCnpj = forCnpj;
     }
 
-    public String getForRazaoSocial() {
-        return forRazaoSocial;
-    }
-
-    public void setForRazaoSocial(String forRazaoSocial) {
-        this.forRazaoSocial = forRazaoSocial;
-    }
-
     public String getForStatus() {
         return forStatus;
     }
 
     public void setForStatus(String forStatus) {
         this.forStatus = forStatus;
+    }
+
+    // Métodos auxiliares para sincronização bidirecional
+    public void addEndereco(Endereco endereco) {
+        enderecos.add(endereco);
+        endereco.setEndFornecedor(this);
+    }
+
+    public void removeEndereco(Endereco endereco) {
+        enderecos.remove(endereco);
+        endereco.setEndFornecedor(null);
+    }
+
+    public void addContato(Contato contato) {
+        contatos.add(contato);
+        contato.setConFornecedor(this);
+    }
+
+    public void removeContato(Contato contato) {
+        contatos.remove(contato);
+        contato.setConFornecedor(null);
     }
 }

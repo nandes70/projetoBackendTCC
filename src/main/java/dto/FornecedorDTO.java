@@ -11,7 +11,7 @@ public class FornecedorDTO {
     private String forNomeFantasia;
     private String forRazaoSocial;
     private String forStatus;
-    @CNPJ(message = "CNPJ inválido")
+
     private String forCnpj;
 
     // Endereço
@@ -28,9 +28,6 @@ public class FornecedorDTO {
     private String conTelefoneComercial;
     private String conEmail;
     private String conEmailSecundario;
-
-
-
 
     public FornecedorDTO() {
     }
