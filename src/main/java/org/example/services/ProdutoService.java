@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,5 +59,30 @@ public class ProdutoService {
             throw new ResourceNotFoundException(id);
         }
         repository.deleteById(id);
+    }
+
+    // ✅ Novo método de busca por ID ou nome
+    public List<Produto> pesquisarPorIdOuNome(String termo) {
+        List<Produto> resultados = new ArrayList<>();
+
+        // Tenta buscar por ID, se for número
+        try {
+            Long id = Long.parseLong(termo);
+            Optional<Produto> produto = repository.findById(id);
+            produto.ifPresent(resultados::add);
+        } catch (NumberFormatException ignored) {
+            // Não é número → ignora
+        }
+
+        // Busca por nome (sempre)
+        List<Produto> porNome = repository.findByProNomeContainingIgnoreCase(termo);
+
+        for (Produto p : porNome) {
+            if (!resultados.contains(p)) {
+                resultados.add(p);
+            }
+        }
+
+        return resultados;
     }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping(value = "/formapagamentos")
+@RequestMapping(value = "/formaPagamento")
 public class FormaPagamentoResource {
 
     @Autowired

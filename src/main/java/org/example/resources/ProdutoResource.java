@@ -56,4 +56,11 @@ public class ProdutoResource {
         produtoService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/pesquisar")
+    public ResponseEntity<List<Produto>> pesquisar(@RequestParam("termo") String termo) {
+        List<Produto> resultados = produtoService.pesquisarPorIdOuNome(termo);
+        return ResponseEntity.ok(resultados);
+    }
 }
+
